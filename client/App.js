@@ -1,32 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import FamilyHomeScreen from "./pages/FamilyHomeScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/getList")
-      .then(res => res.json())
-      .then(list => {
-        setList(list);
-        console.log("List: ", list);
-      });
-  }, [])
-
   return (
-    <View style={styles.container}>
-      <Text>{list.toString()}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="FamilyHomeScreen" component={FamilyHomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
