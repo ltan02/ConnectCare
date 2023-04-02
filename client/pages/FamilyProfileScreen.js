@@ -60,7 +60,45 @@ const FamilyProfileScreen = ({ navigation }) => {
 
           <View>
             <Text style={styles.header6}>Family CareTaker</Text>
-            <View style={styles.flexbox}>
+            <View style={styles.flexbox1}>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Noa Hu</Text>
+                <Text style={styles.profile}>Son</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Hika Ma</Text>
+                <Text style={styles.profile}>Son</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Mily Ma</Text>
+                <Text style={styles.profile}>Daughter</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <Image source={require("../assets/user-profiles/AddButton.png")} style={styles.add} />
+            </View>
+          </View>
+
+        </ScrollView>
+        <ScrollView
+          // style={styles.scrollView}
+          horizontal={true}
+          // showsHorizontalScrollIndicator={false}
+          >
+
+          <View>
+            <Text style={styles.header6}>Day CareTaker</Text>
+            <View style={styles.flexbox2}>
               <View style={styles.profilesContainer}>
                 {/* <View style={styles.orangeContainer}></View> */}
                 <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
@@ -106,9 +144,20 @@ const styles = StyleSheet.create({
   },
   flexbox: {
     flexDirection: "row",
-    height: 30,
-    marginBottom: 42,
-
+    height: 70,
+    marginBottom: 1,
+  },
+  flexbox1: {
+    flexDirection: "row",
+    height: 70,
+    marginBottom: 1,
+  },
+  flexbox2: {
+    flexDirection: "row",
+    height: 70,
+    marginTop: 20,
+    marginBottom: 10,
+    marginHeight: 20,
   },
   persona1: {
     position: "absolute",
@@ -208,13 +257,14 @@ const styles = StyleSheet.create({
   persona: {
     position: "absolute",
 
-    marginTop: 3,
+    marginTop: 5,
     marginLeft: 87,
 
   },
   personText: {
     fontWeight: "bold",
     fontSize: 20,
+    marginTop: 5,
     marginLeft: -10,
   },
   profile: {
