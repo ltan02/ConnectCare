@@ -41,29 +41,54 @@ const FamilyProfileScreen = ({ navigation }) => {
                 <Text style={styles.telephone}>+7785599302</Text>
                 <Text style={styles.clinic}>Royce Clinic</Text>
               </View>
-            </View>
-            <View style={styles.profilesContainer}>
-              <Image source={require("../assets/user-profiles/RoyLee.png")} style={styles.persona} />
-              <Text style={styles.personText}>Grace sun</Text>
-              <Text style={styles.profile}>Nurse</Text>
-              <Text style={styles.telephone}>+7785599302</Text>
-              <Text style={styles.clinic}>Royce Clinic</Text>
+              <View style={styles.profilesContainer}>
+                <Image source={require("../assets/user-profiles/avaSun.png")} style={styles.persona} />
+                <Text style={styles.personText}>Ava Sun</Text>
+                <Text style={styles.profile}>Doctor</Text>
+                <Text style={styles.telephone}>+7789399398</Text>
+                <Text style={styles.clinic}>Royce Clinic</Text>
+              </View>
+              <Image source={require("../assets/user-profiles/AddButton.png")} style={styles.add} />
             </View>
           </View>
         </ScrollView>
-        <ScrollView style={styles.scrollView}>
-          <View>
-            <Text style={styles.header}>Family CareTaker</Text>
-            <View style={styles.profilesContainer}>
-              {/* <View style={styles.orangeContainer}></View> */}
-              <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
-              <Text style={styles.personText}>Noa Hu</Text>
-              <Text style={styles.profile}>Nurse</Text>
-              <Text style={styles.telephone}>+7785599302</Text>
-              <Text style={styles.clinic}>Lives together</Text>
+        <ScrollView
+          // style={styles.scrollView}
+          horizontal={true}
+          // showsHorizontalScrollIndicator={false}
+          >
 
+          <View>
+            <Text style={styles.header6}>Family CareTaker</Text>
+            <View style={styles.flexbox}>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Noa Hu</Text>
+                <Text style={styles.profile}>Son</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Hika Ma</Text>
+                <Text style={styles.profile}>Son</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+                <Text style={styles.personText}>Mily Ma</Text>
+                <Text style={styles.profile}>Daughter</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Lives together</Text>
+              </View>
+              <Image source={require("../assets/user-profiles/AddButton.png")} style={styles.add} />
             </View>
           </View>
+
         </ScrollView>
       </View>
 
@@ -80,9 +105,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   flexbox: {
-    display: "flex",
     flexDirection: "row",
-},
+    height: 30,
+    marginBottom: 42,
+
+  },
   persona1: {
     position: "absolute",
     marginTop: 30,
@@ -110,7 +137,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     width: "90%",
     alignSelf: "center",
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 30,
     borderRadius: 10,
     shadowColor: "#000",
@@ -131,7 +158,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     // alignSelf: "center",
     marginTop: 10,
-    marginBottom: 30,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -189,7 +215,7 @@ const styles = StyleSheet.create({
   personText: {
     fontWeight: "bold",
     fontSize: 20,
-    marginLeft: -5,
+    marginLeft: -10,
   },
   profile: {
     marginLeft: -5,
@@ -209,6 +235,17 @@ const styles = StyleSheet.create({
     marginLeft: -5,
     paddingBottom: 10,
     fontSize: 15,
+    marginTop: 0,
+  },
+  add: {
+    marginTop: 40,
+    marginLeft: 30,
+  },
+  header6: {
+    paddingLeft: 30,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    fontSize: 20,
     marginTop: 0,
   },
 
