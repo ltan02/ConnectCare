@@ -70,6 +70,24 @@ const FamilyInputScreen = ({ route }) => {
     >
       <StatusBar style="auto" />
       <View style={styles.appContainer}>
+<<<<<<< HEAD
+      <View style={styles.topBarContainer}>
+        <TouchableOpacity style={styles.backButton}>
+          <Image
+                style={{ width: 30, height: 30 }}
+                source={require("../assets/arrow.png")}
+              />
+        </TouchableOpacity>
+          <View style={styles.topBarTextBox}>
+            <Text style={styles.topBarText}>
+               4 PM Give Medicine
+            </Text>
+            </View>
+
+            <Text style={styles.box}>
+
+        </Text>
+=======
         <View style={styles.topBarContainer}>
           <TouchableOpacity
             style={styles.backButton}
@@ -83,6 +101,7 @@ const FamilyInputScreen = ({ route }) => {
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>{`${time} - ${task}`}</Text>
           </View>
+>>>>>>> 680e89c7079b1e922f93bed538b19228f9220f28
         </View>
 
         <View>
@@ -179,6 +198,16 @@ const FamilyInputScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+  box: {
+    borderRadius: "100%",
+    height: 48,
+    width: 48,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: "#F2FFFD",
+    
+  },
   vitalsInputText: {
     fontSize: 30,
     maxHeight: 77,
@@ -206,9 +235,11 @@ const styles = StyleSheet.create({
     width: "75%",
     alignContent: "center",
     justifyContent: "center",
+    // marginRight: "10%",
   },
 
   backButton: {
+    paddingLeft: 20,
     borderRadius: "100%",
     height: 48,
     width: 48,
@@ -307,11 +338,11 @@ const styles = StyleSheet.create({
 
   topBarContainer: {
     flexDirection: "row",
-    backgroundColor: "#F2FFFD",
     height: 94,
     width: 429,
     alignSelf: "center",
     justifyContent: "center",
+    backgroundColor: "#F2FFFD",
   },
 
   dateText: {
@@ -333,16 +364,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "black",
     textAlign: "left",
-    paddingLeft: 10,
     paddingTop: 7,
     fontWeight: "bold",
   },
 
   topBarText: {
     fontSize: 25,
+    textAlign: "center",
     color: "black",
-    textAlign: "left",
-    paddingLeft: 10,
   },
 
   longText: {

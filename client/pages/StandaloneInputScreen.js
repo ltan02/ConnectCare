@@ -45,6 +45,22 @@ export const StandaloneInputScreen = () => {
   const formattedDate = month + " " + day + daySuffix + ", " + year;
 
   return (
+<<<<<<< HEAD
+    <LinearGradient
+      colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
+      style={styles.linearGradient}
+    >
+      <View style={styles.appContainer}>
+        <View style={styles.topBarContainer}>
+          <TouchableOpacity style={styles.backButton}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require("../assets/arrow.png")}
+            />
+          </TouchableOpacity>
+          <View style={styles.topBarTextBox}>
+            <Text style={styles.topBarText}>Recording Observation</Text>
+=======
       <LinearGradient
         colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
         style={styles.linearGradient}
@@ -61,6 +77,7 @@ export const StandaloneInputScreen = () => {
             <View style={styles.topBarTextBox}>
               <Text style={styles.topBarText}>11 AM Record Measures</Text>
             </View>
+>>>>>>> 680e89c7079b1e922f93bed538b19228f9220f28
           </View>
 
           <View>
@@ -90,10 +107,23 @@ export const StandaloneInputScreen = () => {
         </View>
       </LinearGradient>
   );
-}
+};
 
 const styles = StyleSheet.create({
+  box: {
+    borderRadius: 100,
+    height: 48,
+    width: 48,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: "#F2FFFD",
+    
+  }, 
 
+  uploadImageText: {
+    fontSize: 18,
+  },
 
   descriptionInputText: {
     paddingTop: "5%",
@@ -101,17 +131,19 @@ const styles = StyleSheet.create({
   inputBoxContainer: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      alignSelf: "center",
-      borderRadius: 10,
-    },
+    alignSelf: "center",
+    borderRadius: 10,
+  },
 
   topBarTextBox: {
     width: "75%",
     alignContent: "center",
     justifyContent: "center",
+    // marginRight: "10%",
   },
 
   backButton: {
+    paddingLeft: 20,
     borderRadius: "100%",
     height: 48,
     width: 48,
@@ -127,25 +159,26 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 20,
-      elevation: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 1,
   },
 
   imageButton: {
-    backgroundColor: "#FABE4B",
+    backgroundColor: "#c9c9c9",
     width: 119,
-    height: 46,
+    height: 35,
+    borderStyle: "solid",
     borderRadius: 10,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
-    marginBottom: 42,
+    marginTop: 0,
+    marginBottom: 58,
   },
 
   saveText: {
@@ -153,7 +186,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#3E3E3E",
-
   },
 
   linearGradient: {
@@ -163,25 +195,23 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
-  
   row: {
     flexDirection: "row",
     alignItems: "center",
   },
 
-
   descriptionInput: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      height: 195,
-      paddingHorizontal: 10,
-      width: "100%",
-      alignSelf: "center",
-      marginTop: 10,
-      marginBottom: 20,
-      borderRadius: 10,
-      elevation: 1,
-    },
+    height: 195,
+    paddingHorizontal: 10,
+    width: "100%",
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
+  },
 
   regularText: {
     paddingTop: 15,
@@ -190,11 +220,11 @@ const styles = StyleSheet.create({
 
   topBarContainer: {
     flexDirection: "row",
-    backgroundColor: "#F2FFFD",
     height: 94,
     width: 429,
     alignSelf: "center",
     justifyContent: "center",
+    backgroundColor: "#F2FFFD",
   },
 
   dateText: {
@@ -223,9 +253,8 @@ const styles = StyleSheet.create({
 
   topBarText: {
     fontSize: 25,
+    textAlign: "center",
     color: "black",
-    textAlign: "left",
-    paddingLeft: 10,
   },
 
   longText: {
@@ -252,7 +281,7 @@ const styles = StyleSheet.create({
     marginRight: 7,
     padding: 8,
     borderRadius: 10,
-  }
-  });
+  },
+});
 
-  export default StandaloneInputScreen;
+export default StandaloneInputScreen;
