@@ -13,7 +13,6 @@ import GiveMedicineScreen from "./pages/GiveMedicineScreen";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -58,7 +57,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Message"
-          component={FamilyInputScreen}
+          component={FamilyHistoryScreen}
           options={{
             tabBarIcon: () => (
               <Image
@@ -70,7 +69,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profile"
-          component={StandaloneInputScreen}
+          component={NurseRecordScreen}
           options={{
             tabBarIcon: () => (
               <Image
@@ -82,5 +81,7 @@ export default function App() {
         />
       </Tab.Navigator>
     </NavigationContainer>
+
+    
   );
 }

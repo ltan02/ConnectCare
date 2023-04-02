@@ -53,7 +53,7 @@ const GiveMedicineScreen = () => {
         <TouchableOpacity style={styles.backButton}>
           <Image
                 style={{ width: 30, height: 30 }}
-                source={require("./arrow.png")}
+                source={require("../assets/arrow.png")}
               />
         </TouchableOpacity>
           <View style={styles.topBarTextBox}>
@@ -109,14 +109,12 @@ const GiveMedicineScreen = () => {
 
 const styles = StyleSheet.create({
     box: {
-        borderRadius: "100%",
         height: 48,
         width: 48,
         alignSelf: "center",
         justifyContent: "center",
         alignContent: "center",
         backgroundColor: "#F2FFFD",
-        
       },
 
     yesText: {
@@ -159,7 +157,7 @@ const styles = StyleSheet.create({
 
   backButton: {
     paddingLeft: 20,
-    borderRadius: "100%",
+    borderRadius: 100,
     height: 48,
     width: 48,
     alignSelf: "center",

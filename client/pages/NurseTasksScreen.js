@@ -13,78 +13,9 @@ import { Task } from "../components/Task";
 import { getUpcomingTasks, getCompletedTasks } from "../firebase/util";
 import * as Progress from "react-native-progress";
 
-const FamilyHomeScreen = () => {
+const NurseTasksScreen = () => {
   const [upcomingTasks, setUpcomingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
-  const [percentageCompleted, setPercentageCompleted] = useState(0.0);
-
-  const currentDate = new Date();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const month = monthNames[currentDate.getMonth()];
-  const day = currentDate.getDate();
-  let daySuffix;
-
-  if (day === 1 || day === 21 || day === 31) {
-    daySuffix = "st";
-  } else if (day === 2 || day === 22) {
-    daySuffix = "nd";
-  } else if (day === 3 || day === 23) {
-    daySuffix = "rd";
-  } else {
-    daySuffix = "th";
-  }
-
-  const year = currentDate.getFullYear();
-  const formattedDate = month + " " + day + daySuffix + ", " + year;
-
-  const getAmPmDate = (str) => {
-    const [hourStr, amPm] = str.split(/(?<=\d)(AM|PM)/i);
-    const hour = parseInt(hourStr);
-    const isPm = amPm.toLowerCase() === "pm";
-    const date = new Date();
-    date.setHours(hour + (isPm && hour !== 12 ? 12 : 0), 0, 0, 0);
-    return date;
-  };
-
-  const userId = "yUBrwuWLyDTnMEAqanq4AYhbUJC2";
-  useEffect(() => {
-    const getTasks = async () => {
-      const upcomingTasksList = await getUpcomingTasks(userId);
-      upcomingTasksList.sort((a, b) => {
-        const aTime = getAmPmDate(a.time);
-        const bTime = getAmPmDate(b.time);
-        return aTime.getTime() - bTime.getTime();
-      });
-      setUpcomingTasks(upcomingTasksList);
-
-      const completedTasksList = await getCompletedTasks(userId);
-      completedTasksList.sort((a, b) => {
-        const aTime = getAmPmDate(a.time);
-        const bTime = getAmPmDate(b.time);
-        return bTime.getTime() - aTime.getTime();
-      });
-      setCompletedTasks(completedTasksList);
-    };
-
-    getTasks();
-  }, []);
-
-  useEffect(() => {
-    setPercentageCompleted(completedTasks.length / (completedTasks.length + upcomingTasks.length));
-  }, [upcomingTasks, completedTasks])
 
   return (
     <LinearGradient
@@ -97,37 +28,9 @@ const FamilyHomeScreen = () => {
           <Image source={require("../assets/logo.png")} style={styles.logo} />
           <Text style={styles.date}>{formattedDate}</Text>
         </View>
-        <View style={styles.progressBarBox}>
-          <Progress.Circle
-            progress={percentageCompleted}
-            size={150}
-            thickness={20}
-            color="#FABE4B"
-            fill="#F2FFFD"
-            borderWidth={0}
-            showsText={true}
-            formatText={() => (
-              <View>
-                <Text style={styles.progressText}>{`${Math.round(
-                  percentageCompleted * 100,
-                )}%`}</Text>
-                <Text style={styles.subText}>of tasks</Text>
-                <Text style={styles.subText}>completed</Text>
-              </View>
-            )}
-            unfilledColor="#5AC6C6"
-            style={styles.progressCircle}
-          />
-          <View>
-            <Text style={styles.progressBarSubText}>Welcome back</Text>
-            <Text style={styles.progressBarSubText}>
-              {`Keep up the great\nwork!`}
-            </Text>
-          </View>
-        </View>
         <ScrollView style={styles.scrollView}>
           <View>
-            <Text style={styles.header}>Upcoming Tasks</Text>
+            <Text style={styles.header}>lol</Text>
             {upcomingTasks.map((task) => {
               return (
                 <Task
@@ -259,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FamilyHomeScreen;
+export default NurseTasksScreen;

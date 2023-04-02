@@ -53,7 +53,7 @@ const FamilyInputScreen = () => {
         <TouchableOpacity style={styles.backButton}>
           <Image
                 style={{ width: 30, height: 30 }}
-                source={require("./arrow.png")}
+                source={require("../assets/arrow.png")}
               />
         </TouchableOpacity>
           <View style={styles.topBarTextBox}>

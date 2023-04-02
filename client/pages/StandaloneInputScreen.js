@@ -53,14 +53,12 @@ const StandaloneInputScreen = () => {
           <TouchableOpacity style={styles.backButton}>
             <Image
               style={{ width: 30, height: 30 }}
-              source={require("./arrow.png")}
+              source={require("../assets/arrow.png")}
             />
           </TouchableOpacity>
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>Recording Observation</Text>
           </View>
-
-          <Text style={styles.box}></Text>
         </View>
 
         <View>
@@ -81,7 +79,7 @@ const StandaloneInputScreen = () => {
         </View>
 
         <TouchableOpacity style={styles.imageButton}>
-          <Text style={styles.uploadImageText}>Upload Image</Text>
+          <Text style={styles.saveText}>Image</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.saveButton}>
@@ -94,7 +92,7 @@ const StandaloneInputScreen = () => {
 
 const styles = StyleSheet.create({
   box: {
-    borderRadius: "100%",
+    borderRadius: 100,
     height: 48,
     width: 48,
     alignSelf: "center",

@@ -50,12 +50,12 @@ const NurseRecordScreen = () => {
     >
       <View style={styles.appContainer}>
         <View style={styles.topBarContainer}>
-        <TouchableOpacity style={styles.backButton}>
-          <Image
-                style={{ width: 30, height: 30 }}
-                source={require("./arrow.png")}
-              />
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.backButton}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require("../assets/arrow.png")}
+            />
+          </TouchableOpacity>
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>
                 Nikki Laude
@@ -68,7 +68,8 @@ const NurseRecordScreen = () => {
                 source={require("./chat.png")}
               />
         </TouchableOpacity>
-        </View>
+            <Text style={styles.topBarText}>Nikki Laude</Text>
+          </View>
 
         <View>
           <Text style={styles.dateText}>{formattedDate}</Text>
@@ -76,68 +77,64 @@ const NurseRecordScreen = () => {
 
         <View>
           <Text style={styles.longText}>
-            Please assess the client's state and take their vitals and any notes.
+            Please assess the client's state and take their vitals and any
+            notes.
           </Text>
         </View>
 
         <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}>Blood Pressure </Text>
-        </View>
+          <View style={styles.vitalsInput}>
+            <Text style={styles.text}>Blood Pressure </Text>
+          </View>
 
           <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
+            <TextInput style={styles.vitalsInputText} placeholder="0" />
+          </View>
 
           <Text> mmHg</Text>
         </View>
 
         <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}>Heart Beat Rate </Text>
-        </View>
+          <View style={styles.vitalsInput}>
+            <Text style={styles.text}>Heart Beat Rate </Text>
+          </View>
 
           <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
-        <View style={styles.row}>
-          <Text> bpm </Text>
-          <Text style={{color: 'transparent'}}>
-            h
-          </Text>
+            <TextInput style={styles.vitalsInputText} placeholder="0" />
+          </View>
+          <View style={styles.row}>
+            <Text> bpm </Text>
+            <Text style={{ color: "transparent" }}>h</Text>
           </View>
         </View>
 
         <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}>Temperature Reading </Text>
-        </View>
+          <View style={styles.vitalsInput}>
+            <Text style={styles.text}>Temperature Reading </Text>
+          </View>
 
           <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
-        <View style={styles.row}>
-          <Text>  °C </Text>
-          <Text style={{color: 'transparent'}}>
-            ha
-          </Text>
+            <TextInput style={styles.vitalsInputText} placeholder="0" />
+          </View>
+          <View style={styles.row}>
+            <Text> °C </Text>
+            <Text style={{ color: "transparent" }}>ha</Text>
           </View>
         </View>
 
         <View>
-          <Text style={styles.regularText}>
-            Log extra information:
-          </Text>
+          <Text style={styles.regularText}>Log extra information:</Text>
         </View>
 
         <View style={styles.descriptionInput}>
-          <TextInput style={styles.descriptionInputText} placeholder="Enter Observations Here..." />
+          <TextInput
+            style={styles.descriptionInputText}
+            placeholder="Enter Observations Here..."
+          />
         </View>
 
         <TouchableOpacity style={styles.saveButton}>
-          <Text style={styles.saveText}>
-            Submit
-          </Text>
+          <Text style={styles.saveText}>Submit</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
