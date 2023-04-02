@@ -1,16 +1,6 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import { Image } from "react-native-elements";
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
 
-const NurseRecordScreen = () => {
+export const ClientListRecord = () => {
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -44,102 +34,77 @@ const NurseRecordScreen = () => {
   const formattedDate = month + " " + day + daySuffix + ", " + year;
 
   return (
-    <LinearGradient
-      colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
-      style={styles.linearGradient}
-    >
-      <View style={styles.appContainer}>
-        <View style={styles.topBarContainer}>
-          <TouchableOpacity style={styles.backButton}>
-            <Image
-              style={{ width: 30, height: 30 }}
-              source={require("../assets/arrow.png")}
-            />
-          </TouchableOpacity>
-          <View style={styles.topBarTextBox}>
-            <Text style={styles.topBarText}>
-                Nikki Laude
-            </Text>
-            </View>
+    <View style={{ paddingTop: 15 }}>
+      <View>
+        <Text style={styles.dateText}>{formattedDate}</Text>
+      </View>
 
-            <TouchableOpacity style={styles.messageButton}>
-          <Image
-                style={{ width: 30, height: 30 }}
-                source={require("../assets/chat.png")}
-              />
-        </TouchableOpacity>
-            <Text style={styles.topBarText}>Nikki Laude</Text>
-          </View>
+      <View>
+        <Text style={styles.longText}>
+          Please assess the client's state and take their vitals and any notes.
+        </Text>
+      </View>
 
-        <View>
-          <Text style={styles.dateText}>{formattedDate}</Text>
+      <View style={styles.inputBoxes}>
+        <View style={styles.vitalsInput}>
+          <Text style={styles.text}>Blood Pressure </Text>
         </View>
 
-        <View>
-          <Text style={styles.longText}>
-            Please assess the client's state and take their vitals and any
-            notes.
-          </Text>
+        <View style={styles.vitalsInput2}>
+          <TextInput style={styles.vitalsInputText} placeholder="0" />
         </View>
 
-        <View style={styles.inputBoxes}>
-          <View style={styles.vitalsInput}>
-            <Text style={styles.text}>Blood Pressure </Text>
-          </View>
+        <Text> mmHg</Text>
+      </View>
 
-          <View style={styles.vitalsInput2}>
-            <TextInput style={styles.vitalsInputText} placeholder="0" />
-          </View>
-
-          <Text> mmHg</Text>
+      <View style={styles.inputBoxes}>
+        <View style={styles.vitalsInput}>
+          <Text style={styles.text}>Heart Beat Rate </Text>
         </View>
 
-        <View style={styles.inputBoxes}>
-          <View style={styles.vitalsInput}>
-            <Text style={styles.text}>Heart Beat Rate </Text>
-          </View>
+        <View style={styles.vitalsInput2}>
+          <TextInput style={styles.vitalsInputText} placeholder="0" />
+        </View>
+        <View style={styles.row}>
+          <Text> bpm </Text>
+          <Text style={{ color: "transparent" }}>h</Text>
+        </View>
+      </View>
 
-          <View style={styles.vitalsInput2}>
-            <TextInput style={styles.vitalsInputText} placeholder="0" />
-          </View>
-          <View style={styles.row}>
-            <Text> bpm </Text>
-            <Text style={{ color: "transparent" }}>h</Text>
-          </View>
+      <View style={styles.inputBoxes}>
+        <View style={styles.vitalsInput}>
+          <Text style={styles.text}>Temperature Reading </Text>
         </View>
 
-        <View style={styles.inputBoxes}>
-          <View style={styles.vitalsInput}>
-            <Text style={styles.text}>Temperature Reading </Text>
-          </View>
-
-          <View style={styles.vitalsInput2}>
-            <TextInput style={styles.vitalsInputText} placeholder="0" />
-          </View>
-          <View style={styles.row}>
-            <Text> °C </Text>
-            <Text style={{ color: "transparent" }}>ha</Text>
-          </View>
+        <View style={styles.vitalsInput2}>
+          <TextInput style={styles.vitalsInputText} placeholder="0" />
         </View>
+        <View style={styles.row}>
+          <Text> °C </Text>
+          <Text style={{ color: "transparent" }}>ha</Text>
+        </View>
+      </View>
 
+      <View style={{width: "90%", paddingLeft: 30}}>
         <View>
           <Text style={styles.regularText}>Log extra information:</Text>
         </View>
-
+        </View>
+        <View style={{width: "90%", justifyContent: "center", alignContent: "center", alignItems: "center", paddingLeft: 30}}>
         <View style={styles.descriptionInput}>
           <TextInput
             style={styles.descriptionInputText}
             placeholder="Enter Observations Here..."
           />
         </View>
-
-        <TouchableOpacity style={styles.saveButton}>
-          <Text style={styles.saveText}>Submit</Text>
-        </TouchableOpacity>
       </View>
-    </LinearGradient>
+
+      <TouchableOpacity style={styles.saveButton}>
+        <Text style={styles.saveText}>Submit</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   vitalsInputText: {
@@ -161,9 +126,9 @@ const styles = StyleSheet.create({
   inputBoxContainer: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      alignSelf: "center",
-      borderRadius: 10,
-    },
+    alignSelf: "center",
+    borderRadius: 10,
+  },
 
   topBarTextBox: {
     width: "75%",
@@ -197,13 +162,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 20,
-      elevation: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 1,
   },
 
   saveText: {
@@ -211,7 +176,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#3E3E3E",
-
   },
 
   linearGradient: {
@@ -221,7 +185,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
-  
   row: {
     flexDirection: "row",
     alignItems: "center",
@@ -238,41 +201,40 @@ const styles = StyleSheet.create({
   descriptionInput: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      height: 100,
-      paddingHorizontal: 10,
-      width: "100%",
-      alignSelf: "center",
-      marginTop: 10,
-      marginBottom: 20,
-      borderRadius: 10,
-      elevation: 1,
-    },
+    height: 100,
+    paddingHorizontal: 10,
+    width: "100%",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
+  },
 
-    vitalsInput: {
-      marginHorizontal: 24,
-      textAlignVertical: "center",
-        backgroundColor: "#F2FFFD",
-        borderColor: "#858585",
-          height: 77,
-          width: "45%",
-          paddingHorizontal: 10,
-          alignSelf: "center",
-          marginTop: 10,
-          marginBottom: 20,
-          borderRadius: 10,
-          elevation: 1,
-    },
+  vitalsInput: {
+    marginHorizontal: 24,
+    textAlignVertical: "center",
+    backgroundColor: "#F2FFFD",
+    borderColor: "#858585",
+    height: 77,
+    width: "45%",
+    paddingHorizontal: 10,
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
+  },
 
-    vitalsInput2: {
-      backgroundColor: "#FFFFFF",
-      borderColor: "#858585",
-        height: 77,
-        paddingHorizontal: 5,
-        alignSelf: "center",
-        marginTop: 10,
-        marginBottom: 20,
-        borderRadius: 10,
-        elevation: 1,
+  vitalsInput2: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#858585",
+    height: 77,
+    paddingHorizontal: 5,
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
   },
 
   regularText: {
@@ -320,8 +282,10 @@ const styles = StyleSheet.create({
   longText: {
     fontSize: 16,
     color: "black",
-    paddingLeft: 13,
     paddingVertical: 24,
+    paddingHorizontal: 15,
+    paddingLeft: 20,
+    textAlign: "center"
   },
 
   label: {
@@ -344,7 +308,6 @@ const styles = StyleSheet.create({
     height: 77,
   },
 
-
   inputContainer: {
     flexDirection: "row",
     justifyContent: "center-align",
@@ -362,7 +325,5 @@ const styles = StyleSheet.create({
     marginRight: 7,
     padding: 8,
     borderRadius: 10,
-  }
-  });
-
-  export default NurseRecordScreen;
+  },
+});

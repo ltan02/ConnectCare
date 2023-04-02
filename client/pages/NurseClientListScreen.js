@@ -32,7 +32,7 @@ const NurseClientListScreen = () => {
           <TouchableOpacity style={styles.messageButton}>
             <Image
               style={{ width: 30, height: 30 }}
-              source={require("./chat.png")}
+              source={require("../assets/chat.png")}
             />
           </TouchableOpacity>
         </View>

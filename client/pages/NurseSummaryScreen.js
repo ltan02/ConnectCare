@@ -11,38 +11,6 @@ import {
 import { Image } from "react-native-elements";
 
 const NurseSummaryScreen = () => {
-  const currentDate = new Date();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const month = monthNames[currentDate.getMonth()];
-  const day = currentDate.getDate();
-  let daySuffix;
-
-  if (day === 1 || day === 21 || day === 31) {
-    daySuffix = "st";
-  } else if (day === 2 || day === 22) {
-    daySuffix = "nd";
-  } else if (day === 3 || day === 23) {
-    daySuffix = "rd";
-  } else {
-    daySuffix = "th";
-  }
-
-  const year = currentDate.getFullYear();
-  const formattedDate = month + " " + day + daySuffix + ", " + year;
-
   return (
     <LinearGradient
       colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
@@ -63,7 +31,7 @@ const NurseSummaryScreen = () => {
           <TouchableOpacity style={styles.messageButton}>
             <Image
               style={{ width: 30, height: 30 }}
-              source={require("./chat.png")}
+              source={require("../assets/chat.png")}
             />
           </TouchableOpacity>
         </View>
