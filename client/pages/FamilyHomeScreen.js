@@ -12,11 +12,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Task } from "../components/Task";
 import { getUpcomingTasks, getCompletedTasks } from "../firebase/util";
 import * as Progress from "react-native-progress";
+import { useIsFocused } from "@react-navigation/native";
 
 const FamilyHomeScreen = () => {
   const [upcomingTasks, setUpcomingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [percentageCompleted, setPercentageCompleted] = useState(0.0);
+  const isFocused = useIsFocused();
 
   const currentDate = new Date();
   const monthNames = [
@@ -62,29 +64,31 @@ const FamilyHomeScreen = () => {
   const userId = "yUBrwuWLyDTnMEAqanq4AYhbUJC2";
   useEffect(() => {
     const getTasks = async () => {
-      const upcomingTasksList = await getUpcomingTasks(userId);
-      upcomingTasksList.sort((a, b) => {
+      const upcomingTasksObject = await getUpcomingTasks(userId);
+      upcomingTasksObject.sort((a, b) => {
         const aTime = getAmPmDate(a.time);
         const bTime = getAmPmDate(b.time);
         return aTime.getTime() - bTime.getTime();
       });
-      setUpcomingTasks(upcomingTasksList);
+      setUpcomingTasks(upcomingTasksObject);
 
-      const completedTasksList = await getCompletedTasks(userId);
-      completedTasksList.sort((a, b) => {
+      const completedTasksObject = await getCompletedTasks(userId);
+      completedTasksObject.sort((a, b) => {
         const aTime = getAmPmDate(a.time);
         const bTime = getAmPmDate(b.time);
         return bTime.getTime() - aTime.getTime();
       });
-      setCompletedTasks(completedTasksList);
+      setCompletedTasks(completedTasksObject);
     };
 
     getTasks();
-  }, []);
+  }, [isFocused]);
 
   useEffect(() => {
-    setPercentageCompleted(completedTasks.length / (completedTasks.length + upcomingTasks.length));
-  }, [upcomingTasks, completedTasks])
+    setPercentageCompleted(
+      completedTasks.length / (completedTasks.length + upcomingTasks.length),
+    );
+  }, [upcomingTasks, completedTasks]);
 
   return (
     <LinearGradient
@@ -134,6 +138,8 @@ const FamilyHomeScreen = () => {
                   key={Math.random().toString(16).substring(6)}
                   time={task.time}
                   task={task.task}
+                  userId={userId}
+                  taskId={task.id}
                   buttonText="Start"
                 />
               );
@@ -147,6 +153,8 @@ const FamilyHomeScreen = () => {
                   key={Math.random().toString(16).substring(6)}
                   time={task.time}
                   task={task.task}
+                  userId={userId}
+                  taskId={task.id}
                   buttonText="View"
                   finishedByUserId={task.finishedBy}
                 />
@@ -221,8 +229,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingLeft: 10,
     flexWrap: "wrap",
-    paddingBottom: 10
-  },    
+    paddingBottom: 10,
+  },
   progressCircle: {
     marginLeft: 10,
   },

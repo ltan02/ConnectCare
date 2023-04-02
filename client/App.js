@@ -4,8 +4,20 @@ import FamilyHomeScreen from "./pages/FamilyHomeScreen";
 import { Text, Image } from "react-native-elements";
 import FamilyHistoryScreen from "./pages/FamilyHistoryScreen";
 import FamilyProfileScreen from "./pages/FamilyProfileScreen";
+import FamilyInputScreen from "./pages/FamilyInputScreen";
+import { createStackNavigator } from "@react-navigation/stack";
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={() => ({headerShown: false})}>
+        <Stack.Screen name="DashboardStack" component={FamilyHomeScreen} />
+        <Stack.Screen name="Input" component={FamilyInputScreen} />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   return (
@@ -40,7 +52,7 @@ export default function App() {
       >
         <Tab.Screen
           name="Dashboard"
-          component={FamilyHomeScreen}
+          component={HomeStack}
           options={{
             tabBarIcon: () => (
               <Image

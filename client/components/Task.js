@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { getUserInfo } from "../firebase/util";
+import { getUserInfo, getTaskData } from "../firebase/util";
+import { useNavigation } from "@react-navigation/native";
 
 export const Task = (props) => {
   const [finishedByName, setFinishedByName] = useState("");
   const [finishedByJobRole, setFinishedByJobRole] = useState("");
+  const [taskData, setTaskData] = useState({});
   const isUpcomingTask = props.buttonText === "Start";
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getFinishedByInfo = async () => {
@@ -16,9 +19,14 @@ export const Task = (props) => {
       setFinishedByJobRole(userInfo.role);
     };
 
+    const getData = async () => {
+      const taskData = await getTaskData(props.taskId);
+      setTaskData(taskData);
+    };
     if (!isUpcomingTask) {
       getFinishedByInfo();
-    }
+      getData();
+    } 
   }, []);
 
   let buttonBackgroundColor = "#FABE4B";
@@ -61,7 +69,21 @@ export const Task = (props) => {
           >{`Done by ${finishedByName} (${jobRole})`}</Text>
         )}
       </View>
-      <TouchableOpacity style={buttonStyles}>
+      <TouchableOpacity
+        style={buttonStyles}
+        onPress={() =>
+          navigation.navigate("Input", {
+            time: props.time,
+            task: props.task,
+            userId: props.userId,
+            taskId: props.taskId,
+            blood: taskData.bloodPressure ?? 0,
+            heart: taskData.heartRate ?? 0,
+            extra: taskData.extraObservations ?? "",
+            isUpcoming: isUpcomingTask,
+          })
+        }
+      >
         <Text style={styles.buttonText}>{props.buttonText}</Text>
       </TouchableOpacity>
     </View>
