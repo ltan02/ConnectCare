@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 
-const FamilyInputScreen = () => {
+const StandaloneInputScreen = () => {
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -69,47 +69,21 @@ const FamilyInputScreen = () => {
 
         <View>
           <Text style={styles.longText}>
-            It's time to record the blood pressure and heartbeat of Nikki!
-          </Text>
-        </View>
-
-        <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Blood Pressure </Text>
-        </View>
-
-          <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
-
-          <Text> mmHg</Text>
-        </View>
-
-        <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Heart Beat Rate </Text>
-        </View>
-
-          <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
-        <View style={styles.row}>
-          <Text> bpm </Text>
-          <Text style={{color: 'transparent'}}>
-            h
-          </Text>
-          </View>
-        </View>
-
-        <View>
-          <Text style={styles.regularText}>
-            Log extra information for nurses:
+            What's up? 
+            Let the doctors know by inputting information!
           </Text>
         </View>
 
         <View style={styles.descriptionInput}>
           <TextInput style={styles.descriptionInputText} placeholder="Enter Observations Here..." />
         </View>
+
+        <TouchableOpacity style={styles.imageButton}>
+          <Text style={styles.saveText}>
+            Image
+          </Text>
+        </TouchableOpacity>
+
 
         <TouchableOpacity style={styles.saveButton}>
           <Text style={styles.saveText}>
@@ -122,22 +96,11 @@ const FamilyInputScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  vitalsInputText: {
-    fontSize: 30,
-    maxHeight: 77,
-    minHeight: 77,
-    maxWidth: 129,
-    minWidth: 129,
-  },
+
 
   descriptionInputText: {
     paddingTop: "5%",
   },
-
-  labelBoxContainer: {
-    backgroundColor: "#F2FFFD",
-  },
-
   inputBoxContainer: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
@@ -176,6 +139,18 @@ const styles = StyleSheet.create({
       elevation: 1,
   },
 
+  imageButton: {
+    backgroundColor: "#FABE4B",
+    width: 119,
+    height: 46,
+    borderRadius: 10,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 16,
+    marginBottom: 42,
+  },
+
   saveText: {
     textAlign: "center",
     fontSize: 20,
@@ -197,13 +172,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  inputBoxes: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 0,
-    marginHorizontal: 0,
-  },
 
   descriptionInput: {
     backgroundColor: "#FFFFFF",
@@ -217,33 +185,6 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       elevation: 1,
     },
-
-    vitalsInput: {
-      marginHorizontal: 24,
-      
-        backgroundColor: "#F2FFFD",
-        borderColor: "#858585",
-          height: 77,
-          width: "45%",
-          paddingHorizontal: 10,
-          alignSelf: "center",
-          marginTop: 10,
-          marginBottom: 20,
-          borderRadius: 10,
-          elevation: 1,
-    },
-
-    vitalsInput2: {
-      backgroundColor: "#FFFFFF",
-      borderColor: "#858585",
-        height: 77,
-        paddingHorizontal: 5,
-        alignSelf: "center",
-        marginTop: 10,
-        marginBottom: 20,
-        borderRadius: 10,
-        elevation: 1,
-  },
 
   regularText: {
     paddingTop: 15,
@@ -297,27 +238,6 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
   },
 
-  label: {
-    width: 100,
-    height: 77,
-    backgroundColor: "#F2FFFD",
-    paddingTop: 20,
-    borderRadius: 10,
-    fontSize: 15,
-    color: "black",
-    textAlign: "left",
-    paddingLeft: 13,
-    fontWeight: "bold",
-  },
-
-  labelBoxContainer: {
-    borderRadius: 10,
-    // backgroundColor: "#F2FFFD",
-    width: 100,
-    height: 77,
-  },
-
-
   inputContainer: {
     flexDirection: "row",
     justifyContent: "center-align",
@@ -338,4 +258,4 @@ const styles = StyleSheet.create({
   }
   });
 
-  export default FamilyInputScreen;
+  export default StandaloneInputScreen;

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 
-const FamilyInputScreen = () => {
+const NurseRecordScreen = () => {
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -58,7 +58,7 @@ const FamilyInputScreen = () => {
         </TouchableOpacity>
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>
-              11 AM Record Measures
+                Nikki Laude
             </Text>
             </View>
         </View>
@@ -69,13 +69,13 @@ const FamilyInputScreen = () => {
 
         <View>
           <Text style={styles.longText}>
-            It's time to record the blood pressure and heartbeat of Nikki!
+            Please assess the client's state and take their vitals and any notes.
           </Text>
         </View>
 
         <View style={styles.inputBoxes}>
         <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Blood Pressure </Text>
+          <Text style={styles.text}>Blood Pressure </Text>
         </View>
 
           <View style={styles.vitalsInput2}>
@@ -87,7 +87,7 @@ const FamilyInputScreen = () => {
 
         <View style={styles.inputBoxes}>
         <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Heart Beat Rate </Text>
+          <Text style={styles.text}>Heart Beat Rate </Text>
         </View>
 
           <View style={styles.vitalsInput2}>
@@ -101,9 +101,25 @@ const FamilyInputScreen = () => {
           </View>
         </View>
 
+        <View style={styles.inputBoxes}>
+        <View style={styles.vitalsInput}>
+          <Text style={styles.text}>Temperature Reading </Text>
+        </View>
+
+          <View style={styles.vitalsInput2}>
+          <TextInput style={styles.vitalsInputText} placeholder="0" />
+        </View>
+        <View style={styles.row}>
+          <Text>  °C </Text>
+          <Text style={{color: 'transparent'}}>
+            ha
+          </Text>
+          </View>
+        </View>
+
         <View>
           <Text style={styles.regularText}>
-            Log extra information for nurses:
+            Log extra information:
           </Text>
         </View>
 
@@ -208,7 +224,7 @@ const styles = StyleSheet.create({
   descriptionInput: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      height: 195,
+      height: 100,
       paddingHorizontal: 10,
       width: "100%",
       alignSelf: "center",
@@ -220,7 +236,7 @@ const styles = StyleSheet.create({
 
     vitalsInput: {
       marginHorizontal: 24,
-      
+      textAlignVertical: "center",
         backgroundColor: "#F2FFFD",
         borderColor: "#858585",
           height: 77,
@@ -275,11 +291,10 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontSize: 25,
+    fontSize: 19.5,
     color: "black",
     textAlign: "left",
-    paddingLeft: 10,
-    paddingTop: 7,
+    paddingTop: 17.5,
     fontWeight: "bold",
   },
 
@@ -338,4 +353,4 @@ const styles = StyleSheet.create({
   }
   });
 
-  export default FamilyInputScreen;
+  export default NurseRecordScreen;

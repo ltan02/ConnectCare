@@ -4,13 +4,14 @@ import FamilyHomeScreen from "./pages/FamilyHomeScreen";
 import { Text, Image } from "react-native-elements";
 import FamilyHistoryScreen from "./pages/FamilyHistoryScreen";
 import FamilyProfileScreen from "./pages/FamilyProfileScreen";
+import FamilyInputScreen from "./pages/FamilyInputScreen";
+import StandaloneInputScreen from "./pages/StandaloneInputScreen";
 import GlobalFont from "react-native-global-font";
+import NurseRecordScreen from "./pages/NurseRecordScreen";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const fontName = "Inter";
-  GlobalFont.applyGlobal(fontName);
 
   return (
     <NavigationContainer>
