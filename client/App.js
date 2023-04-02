@@ -8,6 +8,7 @@ import FamilyInputScreen from "./pages/FamilyInputScreen";
 import StandaloneInputScreen from "./pages/StandaloneInputScreen";
 import GlobalFont from "react-native-global-font";
 import NurseRecordScreen from "./pages/NurseRecordScreen";
+import GiveMedicineScreen from "./pages/GiveMedicineScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +58,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Message"
-          component={FamilyHistoryScreen}
+          component={FamilyInputScreen}
           options={{
             tabBarIcon: () => (
               <Image
@@ -69,7 +70,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profile"
-          component={FamilyProfileScreen}
+          component={StandaloneInputScreen}
           options={{
             tabBarIcon: () => (
               <Image

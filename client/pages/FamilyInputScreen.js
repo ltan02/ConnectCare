@@ -49,7 +49,7 @@ const FamilyInputScreen = () => {
       style={styles.linearGradient}
     >
       <View style={styles.appContainer}>
-        <View style={styles.topBarContainer}>
+      <View style={styles.topBarContainer}>
         <TouchableOpacity style={styles.backButton}>
           <Image
                 style={{ width: 30, height: 30 }}
@@ -58,9 +58,13 @@ const FamilyInputScreen = () => {
         </TouchableOpacity>
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>
-              11 AM Record Measures
+               4 PM Give Medicine
             </Text>
             </View>
+
+            <Text style={styles.box}>
+
+        </Text>
         </View>
 
         <View>
@@ -122,6 +126,16 @@ const FamilyInputScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  box: {
+    borderRadius: "100%",
+    height: 48,
+    width: 48,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: "#F2FFFD",
+    
+  },
   vitalsInputText: {
     fontSize: 30,
     maxHeight: 77,
@@ -149,9 +163,11 @@ const styles = StyleSheet.create({
     width: "75%",
     alignContent: "center",
     justifyContent: "center",
+    // marginRight: "10%",
   },
 
   backButton: {
+    paddingLeft: 20,
     borderRadius: "100%",
     height: 48,
     width: 48,
@@ -252,11 +268,11 @@ const styles = StyleSheet.create({
 
   topBarContainer: {
     flexDirection: "row",
-    backgroundColor: "#F2FFFD",
     height: 94,
     width: 429,
     alignSelf: "center",
     justifyContent: "center",
+    backgroundColor: "#F2FFFD",
   },
 
   dateText: {
@@ -278,16 +294,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "black",
     textAlign: "left",
-    paddingLeft: 10,
     paddingTop: 7,
     fontWeight: "bold",
   },
 
   topBarText: {
     fontSize: 25,
+    textAlign: "center",
     color: "black",
-    textAlign: "left",
-    paddingLeft: 10,
   },
 
   longText: {

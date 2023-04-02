@@ -61,6 +61,13 @@ const NurseRecordScreen = () => {
                 Nikki Laude
             </Text>
             </View>
+
+            <TouchableOpacity style={styles.messageButton}>
+          <Image
+                style={{ width: 30, height: 30 }}
+                source={require("./chat.png")}
+              />
+        </TouchableOpacity>
         </View>
 
         <View>
@@ -168,6 +175,16 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
+    paddingLeft: 20,
+    borderRadius: "100%",
+    height: 48,
+    width: 48,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignContent: "center",
+  },
+
+  messageButton: {
     borderRadius: "100%",
     height: 48,
     width: 48,
@@ -268,7 +285,6 @@ const styles = StyleSheet.create({
 
   topBarContainer: {
     flexDirection: "row",
-    backgroundColor: "#F2FFFD",
     height: 94,
     width: 429,
     alignSelf: "center",
@@ -301,8 +317,7 @@ const styles = StyleSheet.create({
   topBarText: {
     fontSize: 25,
     color: "black",
-    textAlign: "left",
-    paddingLeft: 10,
+    textAlign: "center",
   },
 
   longText: {
