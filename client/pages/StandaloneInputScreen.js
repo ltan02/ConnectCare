@@ -45,22 +45,6 @@ export const StandaloneInputScreen = () => {
   const formattedDate = month + " " + day + daySuffix + ", " + year;
 
   return (
-<<<<<<< HEAD
-    <LinearGradient
-      colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
-      style={styles.linearGradient}
-    >
-      <View style={styles.appContainer}>
-        <View style={styles.topBarContainer}>
-          <TouchableOpacity style={styles.backButton}>
-            <Image
-              style={{ width: 30, height: 30 }}
-              source={require("../assets/arrow.png")}
-            />
-          </TouchableOpacity>
-          <View style={styles.topBarTextBox}>
-            <Text style={styles.topBarText}>Recording Observation</Text>
-=======
       <LinearGradient
         colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
         style={styles.linearGradient}
@@ -77,7 +61,6 @@ export const StandaloneInputScreen = () => {
             <View style={styles.topBarTextBox}>
               <Text style={styles.topBarText}>11 AM Record Measures</Text>
             </View>
->>>>>>> 680e89c7079b1e922f93bed538b19228f9220f28
           </View>
 
           <View>
