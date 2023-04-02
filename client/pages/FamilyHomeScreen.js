@@ -12,13 +12,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Task } from "../components/Task";
 import { getUpcomingTasks, getCompletedTasks } from "../firebase/util";
 import * as Progress from "react-native-progress";
-import { useIsFocused } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 const FamilyHomeScreen = () => {
   const [upcomingTasks, setUpcomingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [percentageCompleted, setPercentageCompleted] = useState(0.0);
   const isFocused = useIsFocused();
+  const navigation = useNavigation()
 
   const currentDate = new Date();
   const monthNames = [
@@ -86,7 +87,7 @@ const FamilyHomeScreen = () => {
 
   useEffect(() => {
     setPercentageCompleted(
-      completedTasks.length / (completedTasks.length + upcomingTasks.length),
+      completedTasks.length / (completedTasks.length + upcomingTasks.length)
     );
   }, [upcomingTasks, completedTasks]);
 
@@ -110,7 +111,7 @@ const FamilyHomeScreen = () => {
             fill="#F2FFFD"
             borderWidth={0}
             showsText={true}
-            formatText={() => (
+            formatText={(progress) => (
               <View>
                 <Text style={styles.progressText}>{`${Math.round(
                   percentageCompleted * 100,
@@ -162,7 +163,10 @@ const FamilyHomeScreen = () => {
             })}
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.additionalInformationButton}>
+        <TouchableOpacity
+          style={styles.additionalInformationButton}
+          onPress={() => navigation.navigate("AdditionalInfo")}
+        >
           <Text style={styles.additionalInformationText}>
             Log Additional Information
           </Text>

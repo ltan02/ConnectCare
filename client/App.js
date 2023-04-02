@@ -6,6 +6,7 @@ import FamilyHistoryScreen from "./pages/FamilyHistoryScreen";
 import FamilyProfileScreen from "./pages/FamilyProfileScreen";
 import FamilyInputScreen from "./pages/FamilyInputScreen";
 import { createStackNavigator } from "@react-navigation/stack";
+import StandaloneInputScreen from "./pages/StandaloneInputScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -15,6 +16,7 @@ function HomeStack() {
     <Stack.Navigator screenOptions={() => ({headerShown: false})}>
         <Stack.Screen name="DashboardStack" component={FamilyHomeScreen} />
         <Stack.Screen name="Input" component={FamilyInputScreen} />
+        <Stack.Screen name="AdditionalInfo" component={StandaloneInputScreen} />
     </Stack.Navigator>
   )
 }

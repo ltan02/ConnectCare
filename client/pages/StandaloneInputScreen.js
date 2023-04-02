@@ -1,7 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -9,8 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Image } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native"
 
 export const StandaloneInputScreen = () => {
+  const navigation = useNavigation();
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -51,7 +52,7 @@ export const StandaloneInputScreen = () => {
         <StatusBar style="auto" />
         <View style={styles.appContainer}>
           <View style={styles.topBarContainer}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
               <Image
                 style={{ width: 30, height: 30 }}
                 source={require("../assets/arrow.png")}
@@ -83,7 +84,7 @@ export const StandaloneInputScreen = () => {
             <Text style={styles.saveText}>Image</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.saveButton}>
+          <TouchableOpacity style={styles.saveButton} onPress={() => navigation.goBack()}>
             <Text style={styles.saveText}>Submit</Text>
           </TouchableOpacity>
         </View>
