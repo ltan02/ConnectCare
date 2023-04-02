@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-
 const FamilyProfileScreen = ({ navigation }) => {
   return (
     <LinearGradient colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
@@ -27,14 +26,43 @@ const FamilyProfileScreen = ({ navigation }) => {
           <Image source={require("../assets/logo.png")} style={styles.logo} />
           <Text style={styles.header4}>Nikki Laude's Cicle</Text>
         </View>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView
+          style={styles.scrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
           <View>
             <Text style={styles.header}>Medical Professional</Text>
+            <View style={styles.flexbox}>
+              <View style={styles.profilesContainer}>
+                {/* <View style={styles.orangeContainer}></View> */}
+                <Image source={require("../assets/user-profiles/RoyLee.png")} style={styles.persona} />
+                <Text style={styles.personText}>Roy Lee</Text>
+                <Text style={styles.profile}>Nurse</Text>
+                <Text style={styles.telephone}>+7785599302</Text>
+                <Text style={styles.clinic}>Royce Clinic</Text>
+              </View>
+            </View>
+            <View style={styles.profilesContainer}>
+              <Image source={require("../assets/user-profiles/RoyLee.png")} style={styles.persona} />
+              <Text style={styles.personText}>Grace sun</Text>
+              <Text style={styles.profile}>Nurse</Text>
+              <Text style={styles.telephone}>+7785599302</Text>
+              <Text style={styles.clinic}>Royce Clinic</Text>
+            </View>
           </View>
         </ScrollView>
         <ScrollView style={styles.scrollView}>
           <View>
             <Text style={styles.header}>Family CareTaker</Text>
+            <View style={styles.profilesContainer}>
+              {/* <View style={styles.orangeContainer}></View> */}
+              <Image source={require("../assets/user-profiles/liamHu.png")} style={styles.persona} />
+              <Text style={styles.personText}>Noa Hu</Text>
+              <Text style={styles.profile}>Nurse</Text>
+              <Text style={styles.telephone}>+7785599302</Text>
+              <Text style={styles.clinic}>Lives together</Text>
+
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -51,6 +79,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  flexbox: {
+    display: "flex",
+    flexDirection: "row",
+},
   persona1: {
     position: "absolute",
     marginTop: 30,
@@ -65,6 +97,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  orangeContainer: {
+    backgroundColor: "#FABE4B",
+    height: 15,
+    width: 10,
+    borderRadius: 10,
+    zIndex: -1,
+  },
   profileContainer: {
     backgroundColor: "#F2FFFD",
     height: 195,
@@ -72,6 +111,26 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     marginTop: 20,
+    marginBottom: 30,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 1,
+  },
+  profilesContainer: {
+    backgroundColor: "#F2FFFD",
+    float: "left",
+    height: 100,
+    paddingHorizontal: 20,
+    width: 140,
+    marginLeft: 20,
+    // alignSelf: "center",
+    marginTop: 10,
     marginBottom: 30,
     borderRadius: 10,
     shadowColor: "#000",
@@ -100,27 +159,59 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontWeight: "bold",
     fontSize: 30,
-    marginTop:40,
+    marginTop: 40,
   },
   header2: {
     paddingLeft: 30,
     paddingBottom: 10,
     fontSize: 20,
-    marginTop:10,
+    marginTop: 10,
   },
   header3: {
     paddingLeft: 30,
     paddingBottom: 10,
     fontSize: 20,
-    marginTop:0,
+    marginTop: 0,
   },
   header4: {
     paddingBottom: 10,
     fontWeight: "bold",
     fontSize: 30,
-    marginTop:0,
+    marginTop: 0,
   },
-  
+  persona: {
+    position: "absolute",
+
+    marginTop: 3,
+    marginLeft: 87,
+
+  },
+  personText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginLeft: -5,
+  },
+  profile: {
+    marginLeft: -5,
+    paddingBottom: 10,
+    fontSize: 15,
+    marginTop: 0,
+    // backgroundColor: "#FABE4B",
+    // borderRadius: 15,
+  },
+  telephone: {
+    marginLeft: -5,
+    paddingBottom: 0,
+    fontSize: 15,
+    marginTop: 5,
+  },
+  clinic: {
+    marginLeft: -5,
+    paddingBottom: 10,
+    fontSize: 15,
+    marginTop: 0,
+  },
+
 });
 
 export default FamilyProfileScreen;
