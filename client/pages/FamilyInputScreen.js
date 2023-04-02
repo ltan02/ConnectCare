@@ -87,10 +87,7 @@ export default function FamilyInputScreen() {
       <View>
         <TextInput style={styles.descriptionInput} placeholder="Bruh" />
       </View>
-
-      {/* <View style={styles.descriptionInputContainer}>
-        <TextInput style={styles.descriptionInput} placeholder="Bruh" />
-      </View> */}
+    
     </View>
   );
 }
