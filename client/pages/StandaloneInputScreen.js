@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 
-const StandaloneInputScreen = () => {
+export const StandaloneInputScreen = () => {
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -44,6 +44,7 @@ const StandaloneInputScreen = () => {
   const formattedDate = month + " " + day + daySuffix + ", " + year;
 
   return (
+<<<<<<< HEAD
     <LinearGradient
       colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
       style={styles.linearGradient}
@@ -58,35 +59,52 @@ const StandaloneInputScreen = () => {
           </TouchableOpacity>
           <View style={styles.topBarTextBox}>
             <Text style={styles.topBarText}>Recording Observation</Text>
+=======
+      <LinearGradient
+        colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
+        style={styles.linearGradient}
+      >
+        <StatusBar style="auto" />
+        <View style={styles.appContainer}>
+          <View style={styles.topBarContainer}>
+            <TouchableOpacity style={styles.backButton}>
+              <Image
+                style={{ width: 30, height: 30 }}
+                source={require("../assets/arrow.png")}
+              />
+            </TouchableOpacity>
+            <View style={styles.topBarTextBox}>
+              <Text style={styles.topBarText}>11 AM Record Measures</Text>
+            </View>
+>>>>>>> 680e89c7079b1e922f93bed538b19228f9220f28
           </View>
+
+          <View>
+            <Text style={styles.dateText}>{formattedDate}</Text>
+          </View>
+
+          <View>
+            <Text style={styles.longText}>
+              What's up? Let the doctors know by inputting information!
+            </Text>
+          </View>
+
+          <View style={styles.descriptionInput}>
+            <TextInput
+              style={styles.descriptionInputText}
+              placeholder="Enter Observations Here..."
+            />
+          </View>
+
+          <TouchableOpacity style={styles.imageButton}>
+            <Text style={styles.saveText}>Image</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.saveButton}>
+            <Text style={styles.saveText}>Submit</Text>
+          </TouchableOpacity>
         </View>
-
-        <View>
-          <Text style={styles.dateText}>{formattedDate}</Text>
-        </View>
-
-        <View>
-          <Text style={styles.longText}>
-            What's up? Let the doctors know by inputting information!
-          </Text>
-        </View>
-
-        <View style={styles.descriptionInput}>
-          <TextInput
-            style={styles.descriptionInputText}
-            placeholder="Enter Observations Here..."
-          />
-        </View>
-
-        <TouchableOpacity style={styles.imageButton}>
-          <Text style={styles.saveText}>Image</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.saveButton}>
-          <Text style={styles.saveText}>Submit</Text>
-        </TouchableOpacity>
-      </View>
-    </LinearGradient>
+      </LinearGradient>
   );
 };
 

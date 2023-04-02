@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -9,8 +9,28 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Image } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import { addUserRecord, setTaskFinished } from "../firebase/util";
 
-const FamilyInputScreen = () => {
+const FamilyInputScreen = ({ route }) => {
+  const { time, task, userId, taskId, blood, heart, extra, isUpcoming } = route.params;
+  const navigation = useNavigation();
+  const [bloodPressure, setBloodPressure] = useState(String(blood));
+  const [heartRate, setHeartRate] = useState(String(heart));
+  const [extraInfo, setExtraInfo] = useState(extra);
+
+  const handleBloodPressureChange = (text) => {
+    setBloodPressure(text);
+  };
+
+  const handleHeartRateChange = (text) => {
+    setHeartRate(text);
+  };
+
+  const handleExtraInfoChange = (text) => {
+    setExtraInfo(text);
+  };
+
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -48,7 +68,9 @@ const FamilyInputScreen = () => {
       colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
       style={styles.linearGradient}
     >
+      <StatusBar style="auto" />
       <View style={styles.appContainer}>
+<<<<<<< HEAD
       <View style={styles.topBarContainer}>
         <TouchableOpacity style={styles.backButton}>
           <Image
@@ -65,6 +87,21 @@ const FamilyInputScreen = () => {
             <Text style={styles.box}>
 
         </Text>
+=======
+        <View style={styles.topBarContainer}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require("../assets/arrow.png")}
+            />
+          </TouchableOpacity>
+          <View style={styles.topBarTextBox}>
+            <Text style={styles.topBarText}>{`${time} - ${task}`}</Text>
+          </View>
+>>>>>>> 680e89c7079b1e922f93bed538b19228f9220f28
         </View>
 
         <View>
@@ -78,30 +115,40 @@ const FamilyInputScreen = () => {
         </View>
 
         <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Blood Pressure </Text>
-        </View>
+          <View style={styles.vitalsInput}>
+            <Text style={styles.text}>Blood Pressure</Text>
+          </View>
 
           <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
+            <TextInput
+              style={styles.vitalsInputText}
+              placeholder="0"
+              onChangeText={handleBloodPressureChange}
+            >
+              {!isUpcoming && bloodPressure}
+            </TextInput>
+          </View>
 
           <Text> mmHg</Text>
         </View>
 
         <View style={styles.inputBoxes}>
-        <View style={styles.vitalsInput}>
-          <Text style={styles.text}> Heart Beat Rate </Text>
-        </View>
+          <View style={styles.vitalsInput}>
+            <Text style={styles.text}>Heart Beat Rate</Text>
+          </View>
 
           <View style={styles.vitalsInput2}>
-          <TextInput style={styles.vitalsInputText} placeholder="0" />
-        </View>
-        <View style={styles.row}>
-          <Text> bpm </Text>
-          <Text style={{color: 'transparent'}}>
-            h
-          </Text>
+            <TextInput
+              style={styles.vitalsInputText}
+              placeholder="0"
+              onChangeText={handleHeartRateChange}
+            >
+              {!isUpcoming && heartRate}
+            </TextInput>
+          </View>
+          <View style={styles.row}>
+            <Text> bpm </Text>
+            <Text style={{ color: "transparent" }}>h</Text>
           </View>
         </View>
 
@@ -112,18 +159,43 @@ const FamilyInputScreen = () => {
         </View>
 
         <View style={styles.descriptionInput}>
-          <TextInput style={styles.descriptionInputText} placeholder="Enter Observations Here..." />
+          <TextInput
+            style={styles.descriptionInputText}
+            placeholder="Enter Observations Here..."
+            onChangeText={handleExtraInfoChange}
+          >
+            {!isUpcoming && extraInfo}
+            </TextInput>
         </View>
 
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity
+          style={styles.saveButton}
+          onPress={() => {
+            const uploadUserDataAndSubmit = async () => {
+              await addUserRecord(
+                userId,
+                taskId,
+                bloodPressure,
+                heartRate,
+                extraInfo,
+              );
+
+              await setTaskFinished(userId, taskId);
+            };
+            uploadUserDataAndSubmit();
+            setTimeout(() => {
+              navigation.goBack();
+            }, 1000);
+          }}
+        >
           <Text style={styles.saveText}>
-            Submit
+            {isUpcoming ? "Submit" : "Update"}
           </Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
   );
-}
+};
 
 const styles = StyleSheet.create({
   box: {
@@ -155,9 +227,9 @@ const styles = StyleSheet.create({
   inputBoxContainer: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      alignSelf: "center",
-      borderRadius: 10,
-    },
+    alignSelf: "center",
+    borderRadius: 10,
+  },
 
   topBarTextBox: {
     width: "75%",
@@ -183,13 +255,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 20,
-      elevation: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 1,
   },
 
   saveText: {
@@ -197,7 +269,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#3E3E3E",
-
   },
 
   linearGradient: {
@@ -207,7 +278,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
-  
   row: {
     flexDirection: "row",
     alignItems: "center",
@@ -224,41 +294,41 @@ const styles = StyleSheet.create({
   descriptionInput: {
     backgroundColor: "#FFFFFF",
     borderColor: "#858585",
-      height: 195,
-      paddingHorizontal: 10,
-      width: "100%",
-      alignSelf: "center",
-      marginTop: 10,
-      marginBottom: 20,
-      borderRadius: 10,
-      elevation: 1,
-    },
+    height: 195,
+    paddingHorizontal: 10,
+    width: "100%",
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
+  },
 
-    vitalsInput: {
-      marginHorizontal: 24,
-      
-        backgroundColor: "#F2FFFD",
-        borderColor: "#858585",
-          height: 77,
-          width: "45%",
-          paddingHorizontal: 10,
-          alignSelf: "center",
-          marginTop: 10,
-          marginBottom: 20,
-          borderRadius: 10,
-          elevation: 1,
-    },
+  vitalsInput: {
+    marginHorizontal: 24,
 
-    vitalsInput2: {
-      backgroundColor: "#FFFFFF",
-      borderColor: "#858585",
-        height: 77,
-        paddingHorizontal: 5,
-        alignSelf: "center",
-        marginTop: 10,
-        marginBottom: 20,
-        borderRadius: 10,
-        elevation: 1,
+    backgroundColor: "#F2FFFD",
+    borderColor: "#858585",
+    height: 77,
+    width: "45%",
+    paddingHorizontal: 10,
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
+  },
+
+  vitalsInput2: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#858585",
+    height: 77,
+    paddingHorizontal: 5,
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    elevation: 1,
   },
 
   regularText: {
@@ -331,7 +401,6 @@ const styles = StyleSheet.create({
     height: 77,
   },
 
-
   inputContainer: {
     flexDirection: "row",
     justifyContent: "center-align",
@@ -349,7 +418,7 @@ const styles = StyleSheet.create({
     marginRight: 7,
     padding: 8,
     borderRadius: 10,
-  }
-  });
+  },
+});
 
-  export default FamilyInputScreen;
+export default FamilyInputScreen;
