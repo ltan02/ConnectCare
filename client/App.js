@@ -55,13 +55,13 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="History"
+          name="Message"
           component={FamilyHistoryScreen}
           options={{
             tabBarIcon: () => (
               <Image
                 style={{ width: 30, height: 30 }}
-                source={require("./assets/line-chart.png")}
+                source={require("./assets/chat.png")}
               />
             ),
           }}
