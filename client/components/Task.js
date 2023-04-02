@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { getUserInfo } from "../firebase/util";
 
 export const Task = (props) => {
+  const [finishedByName, setFinishedByName] = useState("");
+  const [finishedByJobRole, setFinishedByJobRole] = useState("");
   const isUpcomingTask = props.buttonText === "Start";
+
+  useEffect(() => {
+    const getFinishedByInfo = async () => {
+      const userInfo = await getUserInfo(props.finishedByUserId).catch(
+        (error) => {},
+      );
+      setFinishedByName(userInfo.name);
+      setFinishedByJobRole(userInfo.role);
+    };
+
+    if (!isUpcomingTask) {
+      getFinishedByInfo();
+    }
+  }, []);
 
   let buttonBackgroundColor = "#FABE4B";
   if (!isUpcomingTask) {
     buttonBackgroundColor = "#D9D9D9";
+  }
+
+  let jobRole = "Family Member";
+  if (finishedByJobRole === "DayCare") {
+    jobRole = "Day Care Worker";
   }
 
   const buttonStyles = {
@@ -33,7 +55,11 @@ export const Task = (props) => {
     <View style={styles.box}>
       <View>
         <Text style={styles.taskText}>{props.time + " | " + props.task}</Text>
-        {!isUpcomingTask && (<Text style={styles.completedByText}>{`Done by ${props.completedByName} (${props.completedByJobRole})`}</Text>)}
+        {!isUpcomingTask && (
+          <Text
+            style={styles.completedByText}
+          >{`Done by ${finishedByName} (${jobRole})`}</Text>
+        )}
       </View>
       <TouchableOpacity style={buttonStyles}>
         <Text style={styles.buttonText}>{props.buttonText}</Text>
@@ -69,5 +95,5 @@ const styles = StyleSheet.create({
     paddingTop: 2.5,
     color: "#595959",
     fontSize: 14,
-  }
+  },
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -10,8 +10,14 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Task } from "../components/Task";
+import { getUpcomingTasks, getCompletedTasks } from "../firebase/util";
+import * as Progress from "react-native-progress";
 
 const FamilyHomeScreen = () => {
+  const [upcomingTasks, setUpcomingTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [percentageCompleted, setPercentageCompleted] = useState(0.0);
+
   const currentDate = new Date();
   const monthNames = [
     "January",
@@ -44,6 +50,42 @@ const FamilyHomeScreen = () => {
   const year = currentDate.getFullYear();
   const formattedDate = month + " " + day + daySuffix + ", " + year;
 
+  const getAmPmDate = (str) => {
+    const [hourStr, amPm] = str.split(/(?<=\d)(AM|PM)/i);
+    const hour = parseInt(hourStr);
+    const isPm = amPm.toLowerCase() === "pm";
+    const date = new Date();
+    date.setHours(hour + (isPm && hour !== 12 ? 12 : 0), 0, 0, 0);
+    return date;
+  };
+
+  const userId = "yUBrwuWLyDTnMEAqanq4AYhbUJC2";
+  useEffect(() => {
+    const getTasks = async () => {
+      const upcomingTasksList = await getUpcomingTasks(userId);
+      upcomingTasksList.sort((a, b) => {
+        const aTime = getAmPmDate(a.time);
+        const bTime = getAmPmDate(b.time);
+        return aTime.getTime() - bTime.getTime();
+      });
+      setUpcomingTasks(upcomingTasksList);
+
+      const completedTasksList = await getCompletedTasks(userId);
+      completedTasksList.sort((a, b) => {
+        const aTime = getAmPmDate(a.time);
+        const bTime = getAmPmDate(b.time);
+        return bTime.getTime() - aTime.getTime();
+      });
+      setCompletedTasks(completedTasksList);
+    };
+
+    getTasks();
+  }, []);
+
+  useEffect(() => {
+    setPercentageCompleted(completedTasks.length / (completedTasks.length + upcomingTasks.length));
+  }, [upcomingTasks, completedTasks])
+
   return (
     <LinearGradient
       colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
@@ -55,18 +97,61 @@ const FamilyHomeScreen = () => {
           <Image source={require("../assets/logo.png")} style={styles.logo} />
           <Text style={styles.date}>{formattedDate}</Text>
         </View>
-        <View style={styles.progressBarBox}></View>
+        <View style={styles.progressBarBox}>
+          <Progress.Circle
+            progress={percentageCompleted}
+            size={150}
+            thickness={20}
+            color="#FABE4B"
+            fill="#F2FFFD"
+            borderWidth={0}
+            showsText={true}
+            formatText={() => (
+              <View>
+                <Text style={styles.progressText}>{`${Math.round(
+                  percentageCompleted * 100,
+                )}%`}</Text>
+                <Text style={styles.subText}>of tasks</Text>
+                <Text style={styles.subText}>completed</Text>
+              </View>
+            )}
+            unfilledColor="#5AC6C6"
+            style={styles.progressCircle}
+          />
+          <View>
+            <Text style={styles.progressBarSubText}>Welcome back</Text>
+            <Text style={styles.progressBarSubText}>
+              {`Keep up the great\nwork!`}
+            </Text>
+          </View>
+        </View>
         <ScrollView style={styles.scrollView}>
           <View>
             <Text style={styles.header}>Upcoming Tasks</Text>
-            <Task time="11AM" task="Record Measures" buttonText="Start" />
-            <Task time="4PM" task="Give Medicine" buttonText="Start" />
+            {upcomingTasks.map((task) => {
+              return (
+                <Task
+                  key={Math.random().toString(16).substring(6)}
+                  time={task.time}
+                  task={task.task}
+                  buttonText="Start"
+                />
+              );
+            })}
           </View>
           <View>
             <Text style={styles.header}>Completed Tasks</Text>
-            <Task time="10AM" task="Give Medicine" buttonText="View" completedByName="Brian" completedByJobRole="Day Care Worker" />
-            <Task time="8AM" task="Record Measures" buttonText="View" completedByName="Lance" completedByJobRole="Family Member" />
-            <Task time="5AM" task="Record Measures" buttonText="View" />
+            {completedTasks.map((task) => {
+              return (
+                <Task
+                  key={Math.random().toString(16).substring(6)}
+                  time={task.time}
+                  task={task.task}
+                  buttonText="View"
+                  finishedByUserId={task.finishedBy}
+                />
+              );
+            })}
           </View>
         </ScrollView>
         <TouchableOpacity style={styles.additionalInformationButton}>
@@ -88,7 +173,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-  },    
+    paddingBottom: 200,
+  },
   rowHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -100,6 +186,15 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
     fontSize: 20,
+  },
+  progressText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#000000",
+  },
+  subText: {
+    fontSize: 12,
+    color: "#595959",
   },
   progressBarBox: {
     backgroundColor: "#F2FFFD",
@@ -118,6 +213,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  progressBarSubText: {
+    fontSize: 18,
+    paddingLeft: 10,
+    flexWrap: "wrap",
+    paddingBottom: 10
+  },    
+  progressCircle: {
+    marginLeft: 10,
   },
   additionalInformationButton: {
     backgroundColor: "#FABE4B",
