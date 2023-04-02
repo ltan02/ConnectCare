@@ -1,14 +1,38 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 
 const FamilyProfileScreen = ({ navigation }) => {
   return (
     <LinearGradient colors={[`rgba(131, 255, 255, 0.45)`, `rgba(0, 187, 121, 0.45)`]}
-    style={styles.linearGradient}
+      style={styles.linearGradient}
     >
-      <View style={styles.progressBarBox}></View>
+      <View style={{ flex: 1 }}>
+        <View style={styles.profileContainer}></View>
+        <View style={styles.rowHeader}>
+          <Image source={require("../assets/logo.png")} style={styles.logo} />
+        </View>
+        <ScrollView style={styles.scrollView}>
+          <View>
+            <Text style={styles.header}>Medical Professional</Text>
+          </View>
+        </ScrollView>
+        <ScrollView style={styles.scrollView}>
+          <View>
+            <Text style={styles.header}>Family CareTaker</Text>
+          </View>
+        </ScrollView>
+      </View>
+
 
     </LinearGradient>
   );
@@ -27,7 +51,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  progressBarBox: {
+  profileContainer: {
     backgroundColor: "#F2FFFD",
     height: 195,
     paddingHorizontal: 20,
@@ -44,6 +68,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 1,
+  },
+  header: {
+    paddingLeft: 30,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    fontSize: 20,
+    marginTop: 5,
   },
 });
 
